@@ -5,5 +5,31 @@
 {% block content %}
   <div class="container my-4">
     <h1>My Dashboard</h1>
+    <hr>
+    <section id="athletes" class="container">
+      <h2>My Athletes</h2>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Base Time</th>
+          <th scope="col">Base Errors</th>
+        </tr>
+        </thead>
+        {% for athlete in athletes %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ athlete.first }}</td>
+            <td>{{ athlete.last }}</td>
+            <td>{{ athlete.base_time }}</td>
+            <td>{{ athlete.base_errors }}</td>
+          </tr>
+        {% empty %}
+          <p>You Have No Athletes.</p>
+        {% endfor %}
+      </table>
+    </section>
   </div>
 {% endblock %}
