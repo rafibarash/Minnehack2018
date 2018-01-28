@@ -51,6 +51,16 @@
   function showSlide(n) {
     slides[currentSlide].classList.remove("active-slide");
     
+    nextButton.style.display = "inline-block";
+    previousButton.style.display = "inline-block";
+
+    if(n === 0)
+    {
+      previousButton.style.display = "none";
+    }
+    if(n === myQuestions.length - 1){
+      nextButton.style.display = "none";
+    }
     if (n >= myQuestions.length){
     	nextButton.style.display = "none";
 		document.getElementById("quiz").innerHTML = "You've cleared the Visual Test!"
@@ -65,11 +75,16 @@
    	showSlide(currentSlide + 1);
   }
 
+  function showPreviousSlide(){
+    showSlide(currentSlide - 1);
+  }
+
   const quizContainer = document.getElementById("quiz");
   // display quiz right away
   buildQuiz();
 
   const nextButton = document.getElementById("next");
+  const previousButton = document.getElementById("previous");
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
 
@@ -77,5 +92,6 @@
 
   // on submit, show results
   nextButton.addEventListener("click", showNextSlide);
+  previousButton.addEventListener("click", showPreviousSlide);
 
 })();
