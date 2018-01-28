@@ -1,34 +1,30 @@
 
 (function() {
+
   const myQuestions = [
     {
-      link: "Did the player lose consciousness or are they unresponsive?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/demonstration-card.png?raw=true"
     },
     {
-      link: "Does player display any disorientation or inability to respond appropriately to questions?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card1.png?raw=true"
     },
     {
-      link: "Does the player display any signs of retrograde or anterograde amnesia?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card2.png?raw=true"
     },
     {
-      link: "Does the player display any new or persistent symptoms?"
-    },
-    {
-      link: "Does the player display any abnormal neurological finding?"
-    },
-    {
-      link: "Does the player display progressive, persistent or worsening symptoms?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card3.png?raw=true"
     }
   ];
 
   function buildQuiz() {
     
+
     const output = [];
     myQuestions.forEach((currentQuestion) => {
       output.push(
         // Change to IMG Tag
         `<div class="slide">
-           <div class="question"> ${currentQuestion.link} </div>
+        	<img class = question src="${currentQuestion.link}"/>
          </div>`
       );
     });
