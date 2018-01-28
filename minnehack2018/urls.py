@@ -22,6 +22,7 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name='concussiontest/pages/about.html'), name='about'),
     path('test/', TemplateView.as_view(template_name='concussiontest/pages/test.html'), name='test'),
 	path('visual/', TemplateView.as_view(template_name='concussiontest/pages/visual.html'), name='visual'),
+    path('account/', include('account.urls')),
     # Must be last
     path('', TemplateView.as_view(template_name='concussiontest/pages/home.html'), name='home'),
 ]
