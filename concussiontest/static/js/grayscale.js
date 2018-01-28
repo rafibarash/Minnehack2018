@@ -42,11 +42,10 @@
     quizContainer.innerHTML = output.join("");
   }
 
-  function showResults() {
+  function goToVisualTest() {
     // Export Data - 
-    
+    location.href = "{% url 'visual' %}"
     // keep track of user's answers
-    let numCorrect = 0;
   }
 
   function showSlide(n) {
@@ -55,6 +54,7 @@
     	nextButton.style.display = "none";
 		previousButton.style.display = "none";
     	visualButton.style.display = "inline-block";
+    	document.getElementById("quiz").innerHTML = "You've cleared the first part. Take the Visual Test!"
     }
     else{
     	slides[n].classList.add("active-slide");
@@ -72,7 +72,7 @@
     nextButton.style.display = "none";
 	previousButton.style.display = "none";
 	resourcesButton.style.display = "inline-block";
-    resultsContainer.innerHTML = `Bad !!! - Will write code to go to next quiz`;
+    quizContainer.innerHTML = "You should look at some resources we've compiled for you to better assess the severity of the concussion"
   }
 
   const quizContainer = document.getElementById("quiz");
@@ -90,7 +90,7 @@
   showSlide(0);
 
   // on submit, show results
-  visualButton.addEventListener("click", showResults);
+  visualButton.addEventListener("click", goToVisualTest);
   previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
 
