@@ -19,14 +19,18 @@
   function buildQuiz() {
     
     const output = [];
+    output.push(
+      `<div class="slide">
+          <p>Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
+          <br>
+          <p>When you feel the tester understands the process, start the screening procedure</p>
+      </div>`
+    );
     myQuestions.forEach((currentQuestion, questionNumber) => {
       if (questionNumber === 0){
       	output.push(
         // Change to IMG Tag
         `<div class="slide">
-        	<p style="color: #fff">Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
-          <br>
-          <p style="color: #fff">When you feel the tester understands the process, start the screening procedure</p>
           <img class = question src="${currentQuestion.link}"/>
          </div>`
       );	
@@ -40,35 +44,51 @@
          </div>`
       );	
       }
-
-      
     });
+    output.push(
+      `<div class="slide">
+          <p>You've cleared the Test!</p>
+      </div>`
+    )
 
     // finally combine our output list into one string of HTML and put it on the page
     quizContainer.innerHTML = output.join("");
   }
 
   function showSlide(n) {
-    slides[currentSlide].classList.remove("active-slide");
+  
+    slides[currentSlide].classList.remove("active-slide");        
     
     nextButton.style.display = "inline-block";
     previousButton.style.display = "inline-block";
+    nextButton.innerHTML = "Next Picture"
+    previousButton.innerHTML = "Previous Picture";
 
-    if(n === 0)
+    if(n === 0){
+      previousButton.style.display = "none";
+      nextButton.innerHTML = "Start";
+    }
+    
+    if(n === 1)
     {
       previousButton.style.display = "none";
     }
-    if(n === myQuestions.length - 1){
+    
+    slides[n].classList.add("active-slide");
+    currentSlide = n;
+
+    if(n === myQuestions.length){
+      nextButton.innerHTML = "Finish!"
+    }
+
+    if (n > myQuestions.length){
       nextButton.style.display = "none";
+      previousButton.innerHTML = "Go Back"
     }
-    if (n >= myQuestions.length){
-    	nextButton.style.display = "none";
-		document.getElementById("quiz").innerHTML = "You've cleared the Visual Test!"
-    }
-    else{
-    	slides[n].classList.add("active-slide");
-    	currentSlide = n;
-    }
+      
+    
+
+    
   }
 
   function showNextSlide() {
