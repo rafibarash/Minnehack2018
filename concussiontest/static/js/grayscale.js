@@ -87,7 +87,7 @@
   }
 
   function showResults() {
-    // gather answer containers from our quiz
+    // Export Data - 
     const answerContainers = quizContainer.querySelectorAll(".answers");
 
     // keep track of user's answers
@@ -140,9 +140,8 @@
 
   function showNextSlide() {
     
-    const answerContainers = quizContainer.querySelectorAll(".answers");
+    const answerContainer = slides[currentSlide].querySelector(".answers");
     const selector = `input[name=question${currentSlide}]:checked`;
-    const answerContainer = answerContainers[currentSlide];
     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
     if (!(userAnswer === myQuestions[currentSlide].correctAnswer)){
@@ -150,12 +149,10 @@
    		nextButton.style.display = "none"
    		previousButton.style.display = "none"
    		submitButton.style.display = "inline-block"	 	
-
-    }else{
-    	showSlide(currentSlide + 1);	
     }
-
-    
+    else{
+    	showSlide(currentSlide + 1);
+    }
 
   }
 
