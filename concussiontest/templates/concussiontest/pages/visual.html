@@ -5,17 +5,16 @@
 {% block content %}
 
   <div class="wrapper container my-4">
-    
-    <div class="quiz-container">
-      <div id="quiz"></div>
-    </div>
-
     <button id="previous">Previous Picture</button>
     <button id="next">Next Picture</button>
 
     <h1 id = mainClock>
       <time>00:00:00</time>
     </h1>
+
+    <div class="quiz-container">
+      <div id="quiz"></div>
+    </div>
 
   </div>
 
@@ -62,9 +61,57 @@
       position: relative;
       height: 100px;
       margin-top: 40px;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
   </style>
 
 {% endblock %}
+
+{#  <style>#}
+{##}
+{##}
+{#    .question {#}
+{#      font-family: 'Work Sans', sans-serif;#}
+{#    }#}
+{##}
+{#    .wrapper {#}
+{#      text-align: center;#}
+{#    }#}
+{##}
+{##}
+{#    .answers label {#}
+{#      display: block;#}
+{#      margin-bottom: 10px;#}
+{#    }#}
+{##}
+{#    button {#}
+{#      margin: 0 0.5rem;#}
+{#    }#}
+{##}
+{#    .slide {#}
+{#      position: absolute;#}
+{#      left: 0px;#}
+{#      top: 0px;#}
+{#      width: 100%;#}
+{#      z-index: 1;#}
+{#      opacity: 0;#}
+{#      transition: opacity 0.5s;#}
+{#    }#}
+{##}
+{#    .active-slide {#}
+{#      opacity: 1;#}
+{#      z-index: 2;#}
+{#    }#}
+{##}
+{#    .quiz-container {#}
+{#      position: relative;#}
+{#      height: 100px;#}
+{#      margin-top: 40px;#}
+{#      font-size: 1.3rem;#}
+{#    }#}
+{##}
+{#  </style>#}
+{##}
+{#{% endblock %}#}
+{##}

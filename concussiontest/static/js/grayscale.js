@@ -1,294 +1,293 @@
-// Concussion Test
 
 (function() {
+
   const myQuestions = [
     {
-      question: "Did the player lose consciousness or are they unresponsive?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/demonstration-card.png?raw=true"
     },
     {
-      question: "Does player display any disorientation or inability to respond appropriately to questions?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card1.png?raw=true"
     },
     {
-      question: "Does the player display any signs of retrograde or anterograde amnesia?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card2.png?raw=true"
     },
     {
-      question: "Does the player display any new or persistent symptoms?"
-    },
-    {
-      question: "Does the player display any abnormal neurological finding?"
-    },
-    {
-      question: "Does the player display progressive, persistent or worsening symptoms?"
+    	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card3.png?raw=true"
     }
   ];
 
   function buildQuiz() {
-    // we'll need a place to store the HTML output
-    const output = [];
 
-    // for each question...
+    const output = [];
+    output.push(
+      `<div class="slide">
+          <p>Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
+          <br>
+          <p>When you feel the tester understands the process, start the screening procedure. The next screen is an example picture to help guide you and is not part of the evaluation.</p>
+      </div>`
+    );
     myQuestions.forEach((currentQuestion, questionNumber) => {
-      // we'll want to store the list of answer choices
-      
-      // add this question and its answers to the output
-      output.push(
+      if (questionNumber === 0){
+      	output.push(
+        // Change to IMG Tag
         `<div class="slide">
-           <div class="question"> ${currentQuestion.question} </div>
+          <img class = question src="${currentQuestion.link}"/>
+         </div>`
+        );
+      }
+      else
+      {
+      	output.push(
+        // Change to IMG Tag
+        `<div class="slide">
+        	<img class = question src="${currentQuestion.link}"/> 	
          </div>`
       );
+      }
     });
+    output.push(
+      `<div class="slide">
+          <p>You've cleared the Test!</p>
+      </div>`
+    )
 
     // finally combine our output list into one string of HTML and put it on the page
     quizContainer.innerHTML = output.join("");
   }
 
-  function goToVisualTest() {
-    // Export Data - 
-   	
-   	// Redirect to Visual Test Using Django!
-    // location.href = 
-  }
-
   function showSlide(n) {
+
     slides[currentSlide].classList.remove("active-slide");
-    if (n >= myQuestions.length){
-    	nextButton.style.display = "none";
-		previousButton.style.display = "none";
-    	visualButton.style.display = "inline-block";
-    	document.getElementById("quiz").innerHTML = "You've cleared the first part. Take the Visual Test!"
+
+    nextButton.style.display = "inline-block";
+    previousButton.style.display = "inline-block";
+    nextButton.innerHTML = "Next Picture"
+    previousButton.innerHTML = "Previous Picture";
+
+    if(n === 0){
+      previousButton.style.display = "none";
+      nextButton.innerHTML = "Start";
     }
-    else{
-    	slides[n].classList.add("active-slide");
-    	currentSlide = n;
-    	resourcesButton.style.display = "none";
-    	visualButton.style.display = "none";
+
+    if(n === 1)
+    {
+      previousButton.style.display = "none";
     }
+
+    slides[n].classList.add("active-slide");
+    currentSlide = n;
+
+    if(n === myQuestions.length){
+      nextButton.innerHTML = "Finish!"
+    }
+
+    if (n > myQuestions.length){
+      nextButton.style.display = "none";
+      previousButton.innerHTML = "Go Back"
+    }
+
   }
 
   function showNextSlide() {
-   	showSlide(currentSlide + 1);
+   	if (!isTimerOn && currentSlide == 1){
+      timer();
+      isTimerOn = true;
+    }
+
+    if(currentSlide === myQuestions.length){
+      stopTimer();
+      mainClock.style.display = "inline-block";
+    }
+
+    showSlide(currentSlide + 1);
   }
 
-  function showPreviousSlide() {
-    nextButton.style.display = "none";
-	previousButton.style.display = "none";
-	resourcesButton.style.display = "inline-block";
-    quizContainer.innerHTML = "You should look at some resources we've compiled for you to better assess the severity of the concussion"
+  function showPreviousSlide(){
+
+    showSlide(currentSlide - 1);
   }
 
   const quizContainer = document.getElementById("quiz");
-  const resultsContainer = document.getElementById("results");
-  const resourcesButton = document.getElementById("view_resources");
-  const visualButton = document.getElementById("visual_test");
   // display quiz right away
   buildQuiz();
 
-  const previousButton = document.getElementById("previous");
   const nextButton = document.getElementById("next");
+  const previousButton = document.getElementById("previous");
   const slides = document.querySelectorAll(".slide");
   let currentSlide = 0;
 
   showSlide(0);
 
   // on submit, show results
-  visualButton.addEventListener("click", goToVisualTest);
-  previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
+  previousButton.addEventListener("click", showPreviousSlide);
+
+  var isTimerOn = false;
+  // Timer Stuff
+
+  const mainClock = document.getElementById('mainClock');
+  mainClock.style.display = "none";
+
+  var h1 = document.getElementsByTagName('h1')[0],
+    start = document.getElementById('start'),
+    stop = document.getElementById('stop'),
+    clear = document.getElementById('clear'),
+    seconds = 0, minutes = 0, hours = 0,
+    t;
+
+  function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+
+    h1.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+
+    timer();
+  }
+
+  function timer() {
+      t = setTimeout(add, 1000);
+  }
+
+  /* Start button */
+  start.onclick = timer;
+
+  /* Stop button */
+  function stopTimer() {
+      clearTimeout(t);
+  }
+
+  /* Clear button */
+  clear.onclick = function() {
+      h1.textContent = "00:00:00";
+      seconds = 0; minutes = 0; hours = 0;
+  }
+
+
+
 
 })();
 
-
-(function($) {
-  "use strict"; // Start of use strict
-
-  // Smooth scrolling using jQuery easing
-  $('a.js-scroll-trigger[href*="#"]:not([href="#"])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: (target.offset().top - 48)
-        }, 1000, "easeInOutExpo");
-        return false;
-      }
-    }
-  });
-
-  // Closes responsive menu when a scroll trigger link is clicked
-  $('.js-scroll-trigger').click(function() {
-    $('.navbar-collapse').collapse('hide');
-  });
-
-  // Activate scrollspy to add active class to navbar items on scroll
-  $('body').scrollspy({
-    target: '#mainNav',
-    offset: 54
-  });
-
-  // Collapse Navbar
-  var navbarCollapse = function() {
-    if ($("#mainNav").offset().top > 100) {
-      $("#mainNav").addClass("navbar-shrink");
-    } else {
-      $("#mainNav").removeClass("navbar-shrink");
-    }
-  };
-  // Collapse now if page is not at top
-  navbarCollapse();
-  // Collapse the navbar when page is scrolled
-  $(window).scroll(navbarCollapse);
-
-})(jQuery); // End of use strict
-
-// Google Maps Scripts
-var map = null;
-// When the window has finished loading create our google map below
-google.maps.event.addDomListener(window, 'load', init);
-google.maps.event.addDomListener(window, 'resize', function() {
-  map.setCenter(new google.maps.LatLng(40.6700, -73.9400));
-});
-
-function init() {
-  // Basic options for a simple Google Map
-  // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-  var mapOptions = {
-    // How zoomed in you want the map to start at (always required)
-    zoom: 15,
-
-    // The latitude and longitude to center the map (always required)
-    center: new google.maps.LatLng(40.6700, -73.9400), // New York
-
-    // Disables the default Google Maps UI components
-    disableDefaultUI: true,
-    scrollwheel: false,
-    draggable: false,
-
-    // How you would like to style the map.
-    // This is where you would paste any style found on Snazzy Maps.
-    styles: [{
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 17
-      }]
-    }, {
-      "featureType": "landscape",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 20
-      }]
-    }, {
-      "featureType": "road.highway",
-      "elementType": "geometry.fill",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 17
-      }]
-    }, {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 29
-      }, {
-        "weight": 0.2
-      }]
-    }, {
-      "featureType": "road.arterial",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 18
-      }]
-    }, {
-      "featureType": "road.local",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 16
-      }]
-    }, {
-      "featureType": "poi",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 21
-      }]
-    }, {
-      "elementType": "labels.text.stroke",
-      "stylers": [{
-        "visibility": "on"
-      }, {
-        "color": "#000000"
-      }, {
-        "lightness": 16
-      }]
-    }, {
-      "elementType": "labels.text.fill",
-      "stylers": [{
-        "saturation": 36
-      }, {
-        "color": "#000000"
-      }, {
-        "lightness": 40
-      }]
-    }, {
-      "elementType": "labels.icon",
-      "stylers": [{
-        "visibility": "off"
-      }]
-    }, {
-      "featureType": "transit",
-      "elementType": "geometry",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 19
-      }]
-    }, {
-      "featureType": "administrative",
-      "elementType": "geometry.fill",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 20
-      }]
-    }, {
-      "featureType": "administrative",
-      "elementType": "geometry.stroke",
-      "stylers": [{
-        "color": "#000000"
-      }, {
-        "lightness": 17
-      }, {
-        "weight": 1.2
-      }]
-    }]
-  };
-
-  // Get the HTML DOM element that will contain your map
-  // We are using a div with id="map" seen below in the <body>
-  var mapElement = document.getElementById('map');
-
-  // Create the Google Map using out element and options defined above
-  map = new google.maps.Map(mapElement, mapOptions);
-
-  // Custom Map Marker Icon - Customize the map-marker.png file to customize your icon
-  var image = 'img/map-marker.svg';
-  var myLatLng = new google.maps.LatLng(40.6700, -73.9400);
-  var beachMarker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    icon: image
-  });
-}
+//
+// (function() {
+//
+//   const myQuestions = [
+//     {
+//     	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/demonstration-card.png?raw=true"
+//     },
+//     {
+//     	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card1.png?raw=true"
+//     },
+//     {
+//     	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card2.png?raw=true"
+//     },
+//     {
+//     	link: "https://github.com/rafibarash/minnehack2018/blob/master/concussiontest/static/img/card3.png?raw=true"
+//     }
+//   ];
+//
+//   function buildQuiz() {
+//
+//     const output = [];
+//     output.push(
+//       `<div class="slide">
+//           <p>Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
+//           <br>
+//           <p>When you feel the tester understands the process, start the screening procedure</p>
+//       </div>`
+//     );
+//     myQuestions.forEach((currentQuestion, questionNumber) => {
+//       if (questionNumber === 0){
+//       	output.push(
+//         // Change to IMG Tag
+//         `<div class="slide">
+//           <img class = question src="${currentQuestion.link}"/>
+//          </div>`
+//       );
+//       }
+//       else
+//       {
+//       	output.push(
+//         // Change to IMG Tag
+//         `<div class="slide">
+//         	<img class = question src="${currentQuestion.link}"/>
+//          </div>`
+//       );
+//       }
+//     });
+//     output.push(
+//       `<div class="slide">
+//           <p>You've cleared the Test!</p>
+//       </div>`
+//     )
+//
+//     // finally combine our output list into one string of HTML and put it on the page
+//     quizContainer.innerHTML = output.join("");
+//   }
+//
+//   function showSlide(n) {
+//
+//     slides[currentSlide].classList.remove("active-slide");
+//
+//     nextButton.style.display = "inline-block";
+//     previousButton.style.display = "inline-block";
+//     nextButton.innerHTML = "Next Picture"
+//     previousButton.innerHTML = "Previous Picture";
+//
+//     if(n === 0){
+//       previousButton.style.display = "none";
+//       nextButton.innerHTML = "Start";
+//     }
+//
+//     if(n === 1)
+//     {
+//       previousButton.style.display = "none";
+//     }
+//
+//     slides[n].classList.add("active-slide");
+//     currentSlide = n;
+//
+//     if(n === myQuestions.length){
+//       nextButton.innerHTML = "Finish!"
+//     }
+//
+//     if (n > myQuestions.length){
+//       nextButton.style.display = "none";
+//       previousButton.innerHTML = "Go Back"
+//     }
+//
+//
+//
+//
+//   }
+//
+//   function showNextSlide() {
+//    	showSlide(currentSlide + 1);
+//   }
+//
+//   function showPreviousSlide(){
+//     showSlide(currentSlide - 1);
+//   }
+//
+//   const quizContainer = document.getElementById("quiz");
+//   // display quiz right away
+//   buildQuiz();
+//
+//   const nextButton = document.getElementById("next");
+//   const previousButton = document.getElementById("previous");
+//   const slides = document.querySelectorAll(".slide");
+//   let currentSlide = 0;
+//
+//   showSlide(0);
+//
+//   // on submit, show results
+//   nextButton.addEventListener("click", showNextSlide);
+//   previousButton.addEventListener("click", showPreviousSlide);
+//
+// })();
