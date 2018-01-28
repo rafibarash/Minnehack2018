@@ -66,12 +66,13 @@
 
     if(n === 0){
       previousButton.style.display = "none";
-      nextButton.innerHTML = "Start";
+      nextButton.innerHTML = "Example";
     }
     
     if(n === 1)
     {
       previousButton.style.display = "none";
+      nextButton.innerHTML = "Start";
     }
     
     slides[n].classList.add("active-slide");
