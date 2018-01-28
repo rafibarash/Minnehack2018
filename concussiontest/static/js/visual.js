@@ -23,7 +23,7 @@
       `<div class="slide">
           <p>Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
           <br>
-          <p>When you feel the tester understands the process, start the screening procedure</p>
+          <p>When you feel the tester understands the process, start the screening procedure. The next screen is an example picture to help guide you and is not part of the evaluation.</p>
       </div>`
     );
     myQuestions.forEach((currentQuestion, questionNumber) => {
@@ -33,7 +33,7 @@
         `<div class="slide">
           <img class = question src="${currentQuestion.link}"/>
          </div>`
-      );	
+        );	
       }
       else
       {
@@ -89,13 +89,14 @@
   }
 
   function showNextSlide() {
-   	if (!isTimerOn){
+   	if (!isTimerOn && currentSlide == 1){
       timer();
       isTimerOn = true;
     }
 
     if(currentSlide === myQuestions.length){
       stopTimer();
+      mainClock.style.display = "inline-block";
     }
 
     showSlide(currentSlide + 1);
@@ -123,6 +124,10 @@
 
   var isTimerOn = false;
   // Timer Stuff
+  
+  const mainClock = document.getElementById('mainClock');
+  mainClock.style.display = "none";
+
   var h1 = document.getElementsByTagName('h1')[0],
     start = document.getElementById('start'),
     stop = document.getElementById('stop'),
@@ -163,5 +168,8 @@
       h1.textContent = "00:00:00";
       seconds = 0; minutes = 0; hours = 0;
   }
+
+
+
 
 })();
