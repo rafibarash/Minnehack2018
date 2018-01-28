@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # My Apps
     'concussiontest',
-    'account',
+    'dashboard',
+    'registration',
     # Outside Apps
 ]
 
@@ -73,6 +74,9 @@ TEMPLATES = [
         },
     },
 ]
+
+# Redirect to home URL after login (Default redirects to /accounts/profile/)
+LOGIN_REDIRECT_URL = '/dashboard'
 
 WSGI_APPLICATION = 'minnehack2018.wsgi.application'
 
