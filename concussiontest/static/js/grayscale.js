@@ -3,33 +3,53 @@
 (function() {
   const myQuestions = [
     {
-      question: "Who is the strongest?",
+      question: "Did the player lose consciousness or are they unresponsive?",
       answers: {
-        a: "Superman",
-        b: "The Terminator",
-        c: "Waluigi, obviously"
+        a: "Yes",
+        b: "No"
       },
-      correctAnswer: "c"
+      correctAnswer: "b"
     },
     {
-      question: "What is the best site ever created?",
+      question: "Does player display any disorientation or inability to respond appropriately to questions?",
       answers: {
-        a: "SitePoint",
-        b: "Simple Steps Code",
-        c: "Trick question; they're both the best"
+        a: "Yes",
+        b: "No"
       },
-      correctAnswer: "c"
+      correctAnswer: "b"
     },
     {
-      question: "Where is Waldo really?",
+      question: "Does the player display any signs of retrograde or anterograde amnesia?",
       answers: {
-        a: "Antarctica",
-        b: "Exploring the Pacific Ocean",
-        c: "Sitting in a tree",
-        d: "Minding his own business, so stop asking"
+        a: "Yes",
+        b: "No"
       },
-      correctAnswer: "d"
-    }
+      correctAnswer: "b"
+    },
+    {
+      question: "Does the player display any new or persistent symptoms?",
+      answers: {
+        a: "Yes",
+        b: "No"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Does the player display any abnormal neurological finding?",
+      answers: {
+        a: "Yes",
+        b: "No"
+      },
+      correctAnswer: "b"
+    },
+    {
+      question: "Does the player display progressive, persistent or worsening symptoms?",
+      answers: {
+        a: "Yes",
+        b: "No"
+      },
+      correctAnswer: "b"
+    },
   ];
 
   function buildQuiz() {
