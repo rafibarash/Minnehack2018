@@ -44,16 +44,24 @@
 
   function showResults() {
     // Export Data - 
-
+    
     // keep track of user's answers
     let numCorrect = 0;
   }
 
   function showSlide(n) {
     slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
-    currentSlide = n;
-    submitButton.style.display = "none"
+    if (n >= myQuestions.length){
+    	nextButton.style.display = "none";
+		previousButton.style.display = "none";
+    	visualButton.style.display = "inline-block";
+    }
+    else{
+    	slides[n].classList.add("active-slide");
+    	currentSlide = n;
+    	resourcesButton.style.display = "none";
+    	visualButton.style.display = "none";
+    }
   }
 
   function showNextSlide() {
@@ -63,14 +71,14 @@
   function showPreviousSlide() {
     nextButton.style.display = "none";
 	previousButton.style.display = "none";
-	submitButton.style.display = "inline-block";
+	resourcesButton.style.display = "inline-block";
     resultsContainer.innerHTML = `Bad !!! - Will write code to go to next quiz`;
   }
 
   const quizContainer = document.getElementById("quiz");
   const resultsContainer = document.getElementById("results");
-  const submitButton = document.getElementById("submit");
-
+  const resourcesButton = document.getElementById("view_resources");
+  const visualButton = document.getElementById("visual_test");
   // display quiz right away
   buildQuiz();
 
@@ -82,12 +90,11 @@
   showSlide(0);
 
   // on submit, show results
-  submitButton.addEventListener("click", showResults);
+  visualButton.addEventListener("click", showResults);
   previousButton.addEventListener("click", showPreviousSlide);
   nextButton.addEventListener("click", showNextSlide);
 
 })();
-
 
 
 (function($) {
