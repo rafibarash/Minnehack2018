@@ -4,7 +4,7 @@
 <!-- Add Page Content Here -->
 
 <body>
-<h1>Quiz on Important Facts</h1>
+<h1>Physical Attributes Quiz</h1>
 <div class="quiz-container">
   <div id="quiz"></div>
 </div>
@@ -15,6 +15,9 @@
 <div id="results"></div>
 </body>
 
+{% load static %}
+<script src="{% static 'js/grayscale.js' %}"></script>
+
 <style>
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
@@ -24,7 +27,7 @@ body{
 	color: #333;
   font-weight: 300;
   text-align: center;
-  background-color: #f8f6f0;
+  
 }
 h1{
   font-weight: 300;
@@ -36,6 +39,7 @@ h1{
 }
 .question{
   font-size: 30px;
+  color: #fff;
 }
 .answers {
   text-align: left;

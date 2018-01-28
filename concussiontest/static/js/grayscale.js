@@ -44,8 +44,9 @@
 
   function goToVisualTest() {
     // Export Data - 
-    location.href = "{% url 'visual' %}"
-    // keep track of user's answers
+   	
+   	// Redirect to Visual Test Using Django!
+    // location.href = 
   }
 
   function showSlide(n) {
