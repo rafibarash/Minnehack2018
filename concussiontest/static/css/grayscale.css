@@ -182,9 +182,7 @@ img {
   height: auto;
 }
 
-.btn {
-  font-size: 2rem;
-}
+
 
 /* Nav */
 nav {
@@ -221,5 +219,11 @@ nav li.dropdown:hover div.dropdown-menu {
 
 #showcase .content-wrap {
   padding: 2rem 1.5rem;
-
 }
+
+#showcase .btn {
+  font-size: 2rem;
+  padding: 1.1rem;
+}
+
+/* Test */
