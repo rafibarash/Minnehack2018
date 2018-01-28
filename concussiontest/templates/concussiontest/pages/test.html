@@ -3,8 +3,7 @@
 {% block content %}
   <!-- Add Page Content Here -->
 
-<<<<<<< HEAD
-<body>
+<div class="wrapper my-4">
 <h1>Physical Attributes Quiz</h1>
 <div class="quiz-container">
   <div id="quiz"></div>
@@ -14,20 +13,8 @@
 <a><button id="view_resources">View Resources</button></a>
 <a href = "{% url 'visual' %}"><button id="visual_test">Head to Visual Test</button></a>
 <div id="results"></div>
-</body>
-=======
-  <div class="wrapper">
-    <h1>Physical Attributes Quiz</h1>
-    <div class="quiz-container">
-      <div id="quiz"></div>
-    </div>
-    <button id="previous" class="btn btn-primary">Yes</button>
-    <button id="next" class="btn btn-primary">No</button>
-    <button id="view_resources" class="btn btn-primary">View Resources</button>
-    <button id="visual_test" class="btn btn-primary">Head to Visual Test</button>
-    <div id="results"></div>
-  </div>
->>>>>>> origin/master
+</div>
+
 
   {% load static %}
   <script src="{% static 'js/grayscale.js' %}"></script>
