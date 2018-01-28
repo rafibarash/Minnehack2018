@@ -146,7 +146,10 @@
     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
     if (!(userAnswer === myQuestions[currentSlide].correctAnswer)){
-   		resultsContainer.innerHTML = `Bad !!! - Will write code to go to next quiz`;	 	
+   		resultsContainer.innerHTML = `Bad !!! - Will write code to go to next quiz`;
+   		nextButton.style.display = "none"
+   		previousButton.style.display = "none"
+   		submitButton.style.display = "inline-block"	 	
 
     }else{
     	showSlide(currentSlide + 1);	
