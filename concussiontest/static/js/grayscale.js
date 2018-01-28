@@ -139,7 +139,18 @@
   }
 
   function showNextSlide() {
+    
+    const currentHTMLSlide = slides[currentSlide];
+    const answerSelect = currentHTMLSlide.querySelector(".answer");
+    const selector = `input[name=question${currentSlide}]:checked`;
+    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    if (!(userAnswer === myQuestions[currentSlide].correctAnswer)){
+   		resultsContainer.innerHTML = `Bad !!!`;	 	
+    }
+
     showSlide(currentSlide + 1);
+
   }
 
   function showPreviousSlide() {
