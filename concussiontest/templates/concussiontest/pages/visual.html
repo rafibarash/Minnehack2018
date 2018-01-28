@@ -4,7 +4,7 @@
 
 {% block content %}
 
-  <div class="wrapper">
+  <div class="wrapper container my-4">
     <button id="previous">Previous Picture</button>
     <button id="next">Next Picture</button>
 
@@ -22,34 +22,16 @@
   <script src="{% static 'js/visual.js' %}"></script>
 
   <style>
-    @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
-    body {
-      font-size: 20px;
+
+    .question {
       font-family: 'Work Sans', sans-serif;
-      color: #333;
-      font-weight: 300;
+    }
+
+    .wrapper {
       text-align: center;
     }
 
-    h1 {
-      font-weight: 300;
-      margin: 0px;
-      padding: 10px;
-      font-size: 20px;
-      background-color: #444;
-      color: #fff;
-    }
-
-    .question {
-      font-size: 30px;
-      color: #fff;
-    }
-
-    .answers {
-      text-align: left;
-      display: inline-block;
-    }
 
     .answers label {
       display: block;
@@ -57,19 +39,7 @@
     }
 
     button {
-      font-family: 'Work Sans', sans-serif;
-      font-size: 22px;
-      background-color: #279;
-      color: #fff;
-      border: 0px;
-      border-radius: 3px;
-      padding: 20px;
-      cursor: pointer;
-      margin-bottom: 0px;
-    }
-
-    button:hover {
-      background-color: #38a;
+      margin: 0 0.5rem;
     }
 
     .slide {
@@ -91,7 +61,78 @@
       position: relative;
       height: 100px;
       margin-top: 40px;
+      font-size: 1.5rem;
     }
+
+{##}
+{#    body {#}
+{#      font-size: 20px;#}
+{#      font-family: 'Work Sans', sans-serif;#}
+{#      color: #333;#}
+{#      font-weight: 300;#}
+{#      text-align: center;#}
+{#    }#}
+{##}
+{#    h1 {#}
+{#      font-weight: 300;#}
+{#      margin: 0px;#}
+{#      padding: 10px;#}
+{#      font-size: 20px;#}
+{#      background-color: #444;#}
+{#      color: #fff;#}
+{#    }#}
+{##}
+{#    .question {#}
+{#      font-size: 30px;#}
+{#      color: #fff;#}
+{#    }#}
+{##}
+{#    .answers {#}
+{#      text-align: left;#}
+{#      display: inline-block;#}
+{#    }#}
+{##}
+{#    .answers label {#}
+{#      display: block;#}
+{#      margin-bottom: 10px;#}
+{#    }#}
+{##}
+{#    button {#}
+{#      font-family: 'Work Sans', sans-serif;#}
+{#      font-size: 22px;#}
+{#      background-color: #279;#}
+{#      color: #fff;#}
+{#      border: 0px;#}
+{#      border-radius: 3px;#}
+{#      padding: 20px;#}
+{#      cursor: pointer;#}
+{#      margin-bottom: 0px;#}
+{#    }#}
+{##}
+{#    button:hover {#}
+{#      background-color: #38a;#}
+{#    }#}
+{##}
+{#    .slide {#}
+{#      position: absolute;#}
+{#      left: 0px;#}
+{#      top: 0px;#}
+{#      width: 100%;#}
+{#      z-index: 1;#}
+{#      opacity: 0;#}
+{#      transition: opacity 0.5s;#}
+{#    }#}
+{##}
+{#    .active-slide {#}
+{#      opacity: 1;#}
+{#      z-index: 2;#}
+{#    }#}
+{##}
+{#    .quiz-container {#}
+{#      position: relative;#}
+{#      height: 100px;#}
+{#      margin-top: 40px;#}
+{#    }#}
 
   </style>
 
