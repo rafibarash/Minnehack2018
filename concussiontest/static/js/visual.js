@@ -18,17 +18,16 @@
 
   function buildQuiz() {
     
-
     const output = [];
     myQuestions.forEach((currentQuestion, questionNumber) => {
       if (questionNumber === 0){
       	output.push(
         // Change to IMG Tag
         `<div class="slide">
-        	<img class = question src="${currentQuestion.link}"/>
         	<p style="color: #fff">Place Demonstration Card in front of subject. The distance should be the distance to the elbow of the subject's arm when his fist rests on his chin. Ask the tester to call out the numbers on the screen as quickly as possible from left to right following the arrows on the demonstration card.</p>
-        	<br>
-        	<p style="color: #fff">When you feel the tester understands the process, start the screening procedure</p>
+          <br>
+          <p style="color: #fff">When you feel the tester understands the process, start the screening procedure</p>
+          <img class = question src="${currentQuestion.link}"/>
          </div>`
       );	
       }
