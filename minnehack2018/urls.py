@@ -25,6 +25,7 @@ urlpatterns = [
     path('resources/', TemplateView.as_view(template_name='concussiontest/pages/resources.html'), name='resources'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('signup/', include('registration.urls')),
     # Must be last
     path('', TemplateView.as_view(template_name='concussiontest/pages/home.html'), name='home'),
 ]

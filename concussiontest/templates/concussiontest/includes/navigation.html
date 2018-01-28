@@ -29,8 +29,10 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="accountDropdown">
             <a class="dropdown-item" href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+            <a class="dropdown-item" href="/admin/concussiontest/athlete/">Add Athletes</a>
             <a class="dropdown-item" href="{% url 'login' %}">Login</a>
             <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+            <a class="dropdown-item" href="{% url 'registration:signup' %}">Sign Up</a>
           </div>
         </li>
       </ul>
