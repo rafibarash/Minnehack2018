@@ -140,16 +140,19 @@
 
   function showNextSlide() {
     
-    const currentHTMLSlide = slides[currentSlide];
-    const answerSelect = currentHTMLSlide.querySelector(".answer");
+    const answerContainers = quizContainer.querySelectorAll(".answers");
     const selector = `input[name=question${currentSlide}]:checked`;
+    const answerContainer = answerContainers[currentSlide];
     const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
     if (!(userAnswer === myQuestions[currentSlide].correctAnswer)){
-   		resultsContainer.innerHTML = `Bad !!!`;	 	
+   		resultsContainer.innerHTML = `Bad !!! - Will write code to go to next quiz`;	 	
+
+    }else{
+    	showSlide(currentSlide + 1);	
     }
 
-    showSlide(currentSlide + 1);
+    
 
   }
 
